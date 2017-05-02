@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UngRestaurant</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_setting">Settings</string>
+
+    <string name="head">อร่อย สัส สัส</string>
+    <string name="user">User</string>
+    <string name="Pass">Password</string>
+    <string name="login">Login</string>
+</resources>
