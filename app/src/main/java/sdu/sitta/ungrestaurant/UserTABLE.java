@@ -17,11 +17,11 @@ public class UserTABLE {
     private SQLiteDatabase writeSQLiteDataBase, readSQLiteDataBase;
 
     public static final String TABLE = "userTABLE";
-
     public static final String User_ID = BaseColumns._ID;
     public static final String User_USER = "User";
     public static final String User_PASSWORD = "Password";
-    public static final String User_NAME = "Name";
+    public static final String User_NAME = "Email";
+    public static final String User_NAME2 = "Address";
 
     public UserTABLE(Context context){
         objMySQLiteOpenHelper = new MySQLiteOpenHelper(context);
@@ -29,11 +29,12 @@ public class UserTABLE {
         readSQLiteDataBase = objMySQLiteOpenHelper.getReadableDatabase();
     }
 
-    public long AddNewUser(String strUser,String strPassword,String strName){
+    public long AddNewUser(String strUser,String strPassword,String strName,String strName2){
         ContentValues objContentValues = new ContentValues();
         objContentValues.put(objMySQLiteOpenHelper.User_USER,strUser);
         objContentValues.put(objMySQLiteOpenHelper.User_PASSWORD,strPassword);
         objContentValues.put(objMySQLiteOpenHelper.User_NAME,strName);
+        objContentValues.put(objMySQLiteOpenHelper.User_NAME2,strName2);
         return readSQLiteDataBase.insert(objMySQLiteOpenHelper.TABLE,null,objContentValues);
     }
 

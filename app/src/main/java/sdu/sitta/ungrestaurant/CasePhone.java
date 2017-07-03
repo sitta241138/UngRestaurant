@@ -38,30 +38,28 @@ public class CasePhone {
     }
 
     public String[] readALLCasePhone(int intColume){
-        String[] strReadALL = null;
-        Cursor objCursor = readSqLiteDatabase.query(TABLE_casephone,
-                new String[]{casephone_ID, casephone_Name, casephone_Pic, casephone_Price},
-                null,null,null,null,null);
-        if(objCursor != null){
-            objCursor.moveToFirst();
-            strReadALL = new String[objCursor.getCount()];
-            for(int i=0;i<=objCursor.getCount();i++){
-                switch (intColume){
-                    case 1:
-                        strReadALL[i] = objCursor.getString(objCursor.getColumnIndex(casephone_Name));
-                        break;
-                    case 2:
-                        strReadALL[i] = objCursor.getString(objCursor.getColumnIndex(casephone_Pic));
-                        break;
-                    default:
-                        strReadALL[i] = objCursor.getString(objCursor.getColumnIndex(casephone_Price));
-                        break;
+        try {
+            String[] strResult = null;
+            Cursor objCursor = readSqLiteDatabase.query(TABLE_casephone, new String[]{casephone_ID,casephone_Name,casephone_Price,casephone_Pic},null,null,null,null,null);
+            if(objCursor != null){
+                if(objCursor.moveToFirst()){
+                    strResult = new String[10];
+                    // strResult[0] = objCursor.getString(0);
+                    // strResult[1] = objCursor.getString(1);
+                    // strResult[2] = objCursor.getString(2);
+                    // strResult[3] = objCursor.getString(3);
+                    for(int i =0;i<10;i++){
+                        strResult[i] = objCursor.getString(intColume);
+                        objCursor.moveToNext();
+                    }
                 }
-                objCursor.moveToNext();
-
             }
+            objCursor.close();
+            return strResult;
+        }catch (Exception e){
+            return null;
         }
-        return strReadALL;
+        //return new String[0];
     }
 }
 

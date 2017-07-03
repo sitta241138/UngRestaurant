@@ -22,6 +22,7 @@ public class MyAdapter extends BaseAdapter{
         this.objcontext = context;
         this.foodString = foodString; // ชื่อ
         this.sourceString = sourceString; // รูป
+
         this.priceString = priceString; // ราคา
     }
 

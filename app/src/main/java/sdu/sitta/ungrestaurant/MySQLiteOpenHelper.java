@@ -27,8 +27,9 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String User_ID = BaseColumns._ID;
     public static final String User_USER = "User";
     public static final String User_PASSWORD = "Password";
-    public static final String User_NAME = "Name";
-    public String CREATE_FRIEND_TABLE ="create table "+TABLE+" ("+User_ID+" integer primary key, "+User_USER+" text, "+User_PASSWORD+" text, "+User_NAME+" text);";
+    public static final String User_NAME = "Email";
+    public static final String User_NAME2 = "Address";
+    public String CREATE_FRIEND_TABLE ="create table "+TABLE+" ("+User_ID+" integer primary key, "+User_USER+" text, "+User_PASSWORD+" text, "+User_NAME+" text, "+User_NAME2+" text);";
 
     public static final String TABLE2 = "Drinktable";
     public static final String Drink_ID = "ID_Drink";

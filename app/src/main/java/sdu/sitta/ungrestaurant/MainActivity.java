@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Cdatabase();
 
-        //synJAONtoSQLite();
+        synJAONtoSQLite();
 
         //TestAdd();
 
@@ -183,8 +183,9 @@ public class MainActivity extends AppCompatActivity {
                             //update UserTABLE
                             String strUser = jsonObject.getString("User");
                             String strPassword = jsonObject.getString("Password");
-                            String strName = jsonObject.getString("Name");
-                            objUserTable.AddNewUser(strUser,strPassword,strName);
+                            String strEmail = jsonObject.getString("Email");
+                            String strAddress = jsonObject.getString("Address");
+                            objUserTable.AddNewUser(strUser,strPassword,strEmail,strAddress);
                             break;
                         case 1:
                         //update casephoneTable
@@ -218,8 +219,8 @@ public class MainActivity extends AppCompatActivity {
     } // เปิดใช้งาน sqlite
 
     public void TestAdd(){
-        objUserTable.AddNewUser("123","456","sitta");
-        objDrinkTable.addNewDrink("111","222","2311","3212");
+        //objUserTable.AddNewUser("123","456","sitta");
+        //objDrinkTable.addNewDrink("111","222","2311","3212");
     } // add data
 
     private void deleteAllData() {
