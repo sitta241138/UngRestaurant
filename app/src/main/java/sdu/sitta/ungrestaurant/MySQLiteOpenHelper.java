@@ -31,6 +31,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String User_NAME2 = "Address";
     public String CREATE_FRIEND_TABLE ="create table "+TABLE+" ("+User_ID+" integer primary key, "+User_USER+" text, "+User_PASSWORD+" text, "+User_NAME+" text, "+User_NAME2+" text);";
 
+
     public static final String TABLE2 = "Drinktable";
     public static final String Drink_ID = "ID_Drink";
     public static final String Drink_Drink = "Name";
@@ -46,6 +47,16 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String casephone_Pic = "c_Pic";
     public String CREATE_CASEPHONE_TABLE ="create table "+TABLE_casephone+" ("+casephone_ID+" integer primary key , "+casephone_Name+" text, "+casephone_Pic+" text, "+casephone_Price+" text);";
 
+    public static final String Menu_TABLE = "menutable";
+    public static final String Menu_ID = "id_menu";
+    public static final String Menu_NAME = "name_menu";
+    public static final String Menu_DETAIL = "detail_menu";
+    public static final String Menu_PRICE = "price_menu";
+    public static final String Menu_PICTURE = "picture_menu";
+    public static final String Menu_TYPE = "type";
+    private static final String CREATE_MENU_TABLE = "create table "+Menu_TABLE+" ("+Menu_ID+" integer primary key," +
+            " "+Menu_NAME+" text,"+Menu_DETAIL+" text, "+Menu_PRICE+" text, "+Menu_PICTURE+" text, "+Menu_TYPE+" text);";
+
     public MySQLiteOpenHelper(Context context) {
         super(context, DataBase_Name, null, DataBase_Version);
     }
@@ -56,9 +67,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         Log.i(TAG, CREATE_FRIEND_TABLE);
         Log.i(TAG, CREATE_DRINK_TABLE);
         Log.i(TAG, CREATE_CASEPHONE_TABLE);
+        Log.i(TAG, CREATE_MENU_TABLE);
         db.execSQL(CREATE_FRIEND_TABLE);
         db.execSQL(CREATE_DRINK_TABLE); // ขวัญ
         db.execSQL(CREATE_CASEPHONE_TABLE);
+        db.execSQL(CREATE_MENU_TABLE);
 
     }
 

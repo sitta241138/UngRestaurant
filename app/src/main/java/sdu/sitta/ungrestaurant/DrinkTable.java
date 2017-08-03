@@ -41,4 +41,30 @@ public class DrinkTable {
         return readSqLiteDatabase.insert(objMySQLiteOpenHelper.TABLE2,null, objContentValues);
     }
 
+
+    public String[] readALLDrink(int intColume){
+        try {
+            String[] strResult = null;
+            Cursor objCursor = readSqLiteDatabase.query(TABLE2, new String[]{Drink_ID,Drink_Drink,Drink_Detail,Drink_Source,Drink_Price},null,null,null,null,null);
+            if(objCursor != null){
+                if(objCursor.moveToFirst()){
+                    strResult = new String[3];
+                    // strResult[0] = objCursor.getString(0);
+                    // strResult[1] = objCursor.getString(1);
+                    // strResult[2] = objCursor.getString(2);
+                    // strResult[3] = objCursor.getString(3);
+                    for(int i =0;i<3;i++){
+                        strResult[i] = objCursor.getString(intColume);
+                        objCursor.moveToNext();
+                    }
+                }
+            }
+            objCursor.close();
+            return strResult;
+        }catch (Exception e){
+            return null;
+        }
+        //return new String[0];
+    }
+
 }

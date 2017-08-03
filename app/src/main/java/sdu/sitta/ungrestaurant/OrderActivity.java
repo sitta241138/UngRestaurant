@@ -1,10 +1,12 @@
 package sdu.sitta.ungrestaurant;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -32,6 +34,8 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+
 
         BindWidget();
 
@@ -94,7 +98,6 @@ public class OrderActivity extends AppCompatActivity {
         MyAdapter objMyAdapter = new MyAdapter(OrderActivity.this, strC_Name,strC_Price,strC_Pic);
         //MyAdapter objMyAdapter = new MyAdapter(OrderActivity.this, o1,o3,o2);
         casephoneListView.setAdapter(objMyAdapter);
-
     }
 
    private void BindWidget() {
@@ -102,5 +105,10 @@ public class OrderActivity extends AppCompatActivity {
        deskSpinner = (Spinner) findViewById(R.id.spinner);
        casephoneListView = (ListView) findViewById(R.id.listview);
    }
+
+    public void onClickOrder(View view){
+        Intent intent = new Intent(OrderActivity.this,Menu.class);
+        startActivity(intent);
+    }
 
 }

@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private UserTABLE objUserTable;
     private DrinkTable objDrinkTable;
     private CasePhone objCasePhone;
+    private MenuTable objMenuTable;
 
     private EditText userEditText,passEditText;
 
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         objBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                Intent intent = new Intent(MainActivity.this, Menu.class);
                 intent.putExtra("Officer",strname);
                 startActivity(intent);
                 dialog.dismiss();
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             String strJSON = null;
             String strUserURL = "http://5711020660041.sci.dusit.ac.th/userTable.php";
             String strCasePhone = "http://5711020660041.sci.dusit.ac.th/casephoneTable.php";
+            String strMenuURL = "http://5711020660011.sci.dusit.ac.th/getAllDataMenu.php";
             String strDrinkURL = "http://bitmouse.96.lt/GUPER/drink.php";
             HttpPost objHttpPost = null;
 
@@ -148,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         objHttpPost = new HttpPost(strCasePhone);
+                        break;
+                    case 2:
+                        objHttpPost = new HttpPost(strMenuURL);
                         break;
                     default:
                         objHttpPost = new HttpPost(strDrinkURL);
@@ -188,12 +193,21 @@ public class MainActivity extends AppCompatActivity {
                             objUserTable.AddNewUser(strUser,strPassword,strEmail,strAddress);
                             break;
                         case 1:
-                        //update casephoneTable
-                        String cName = jsonObject.getString("c_Name");
-                        String cPrice = jsonObject.getString("c_Price");
-                        String cPic = jsonObject.getString("c_Pic");
-                        objCasePhone.AddNewCasePhone(cName,cPrice,cPic);
-                        break;
+                            //update casephoneTable
+                            String cName = jsonObject.getString("c_Name");
+                            String cPrice = jsonObject.getString("c_Price");
+                            String cPic = jsonObject.getString("c_Pic");
+                            objCasePhone.AddNewCasePhone(cName,cPrice,cPic);
+                            break;
+                        case 2:
+                            //update MenuTable
+                            String name_menu = jsonObject.getString("name_menu");
+                            String detail_menu = jsonObject.getString("detail_menu");
+                            String price_menu = jsonObject.getString("price_menu");
+                            String picture_menu = jsonObject.getString("picture_menu");
+                            String type = jsonObject.getString("type");
+                            objMenuTable.AddNewMenuTable(name_menu,detail_menu,price_menu,picture_menu,type);
+                            break;
                         default:
                             //update drinktable
                             String strdrink = jsonObject.getString("Name");
@@ -216,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
         objUserTable = new UserTABLE(this);
         objDrinkTable = new DrinkTable(this);
         objCasePhone = new CasePhone(this);
+        objMenuTable = new MenuTable(this);
     } // เปิดใช้งาน sqlite
 
     public void TestAdd(){
