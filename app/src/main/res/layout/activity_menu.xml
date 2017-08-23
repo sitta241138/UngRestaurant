@@ -35,4 +35,49 @@
         android:layout_below="@+id/btnDrink"
         android:layout_marginTop="@dimen/h1"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/oop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="@dimen/h2"
+        android:layout_below="@+id/btnMenu"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/oop1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="@dimen/h2"
+        android:layout_below="@+id/oop"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/oop2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oop1"
+        android:text="2"
+        android:textSize="@dimen/h2"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/oop3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oop2"
+        android:text="3"
+        android:textSize="@dimen/h2"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/oop4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oop3"
+        android:text="4"
+        android:textSize="@dimen/h2"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

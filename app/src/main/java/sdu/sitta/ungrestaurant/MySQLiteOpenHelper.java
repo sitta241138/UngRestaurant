@@ -24,7 +24,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final int DataBase_Version = 1;
 
     public static final String TABLE = "userTABLE";
-    public static final String User_ID = BaseColumns._ID;
+    public static final String User_ID = "BaseColumns";
     public static final String User_USER = "User";
     public static final String User_PASSWORD = "Password";
     public static final String User_NAME = "Email";

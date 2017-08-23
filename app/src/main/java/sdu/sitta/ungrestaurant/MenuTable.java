@@ -43,20 +43,19 @@ public class MenuTable {
 
     public String[] readALLMenuTable(int intColume){
         try {
+            int op = 0;
             String[] strResult = null;
             Cursor objCursor = readSqLiteDatabase.query(Menu_TABLE, new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
-                    strResult = new String[3];
-                    // strResult[0] = objCursor.getString(0);
-                    // strResult[1] = objCursor.getString(1);
-                    // strResult[2] = objCursor.getString(2);
-                    // strResult[3] = objCursor.getString(3);
-                    for(int i =0;i<3;i++){
+                    op++;
+                    strResult = new String[10];
+                    for(int i =0;i<10;i++){
                         strResult[i] = objCursor.getString(intColume);
                         objCursor.moveToNext();
                     }
                 }
+
             }
             objCursor.close();
             return strResult;

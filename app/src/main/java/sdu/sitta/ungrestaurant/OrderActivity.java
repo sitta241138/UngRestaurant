@@ -35,7 +35,7 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-
+        Cdatabase();
 
         BindWidget();
 
@@ -48,7 +48,7 @@ public class OrderActivity extends AppCompatActivity {
         todoListView.setAdapter(adapter);
         todoListDAO.close();
         */
-        Cdatabase();
+
         createListView();
 
         /*
@@ -89,12 +89,12 @@ public class OrderActivity extends AppCompatActivity {
     private void createListView() {
         CasePhone objCasephone = new CasePhone(this);
         String[] strC_Name = objCasephone.readALLCasePhone(1);
-        String[] strC_Pic = objCasephone.readALLCasePhone(2);
-        String[] strC_Price = objCasephone.readALLCasePhone(3);
+        String[] strC_Pic = objCasephone.readALLCasePhone(1);
+        String[] strC_Price = objCasephone.readALLCasePhone(1);
 
-        //String[] o1 = {"ht","hy","hu"};
-        //String[] o2 = {"123","456","789"};
-        //String[] o3 = {"http://bitmouse.96.lt/GUPER/pic/iphone7.png","http://bitmouse.96.lt/GUPER/pic/iphone7.png","http://bitmouse.96.lt/GUPER/pic/iphone7.png"};
+        String[] o1 = {"ht","hy","hu"};
+        String[] o2 = {"123","456","789"};
+        String[] o3 = {"http://bitmouse.96.lt/GUPER/pic/iphone7.png","http://bitmouse.96.lt/GUPER/pic/iphone7.png","http://bitmouse.96.lt/GUPER/pic/iphone7.png"};
         MyAdapter objMyAdapter = new MyAdapter(OrderActivity.this, strC_Name,strC_Price,strC_Pic);
         //MyAdapter objMyAdapter = new MyAdapter(OrderActivity.this, o1,o3,o2);
         casephoneListView.setAdapter(objMyAdapter);

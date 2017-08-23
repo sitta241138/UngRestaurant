@@ -43,12 +43,9 @@ public class CasePhone {
             Cursor objCursor = readSqLiteDatabase.query(TABLE_casephone, new String[]{casephone_ID,casephone_Name,casephone_Price,casephone_Pic},null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
-                    strResult = new String[10];
-                    // strResult[0] = objCursor.getString(0);
-                    // strResult[1] = objCursor.getString(1);
-                    // strResult[2] = objCursor.getString(2);
-                    // strResult[3] = objCursor.getString(3);
-                    for(int i =0;i<10;i++){
+                    int num = objCursor.getCount();
+                    strResult = new String[num];
+                    for(int i =0;i<num;i++){
                         strResult[i] = objCursor.getString(intColume);
                         objCursor.moveToNext();
                     }

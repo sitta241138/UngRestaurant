@@ -1,7 +1,9 @@
 package sdu.sitta.ungrestaurant;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
@@ -45,13 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userEditText,passEditText;
 
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Cdatabase();
-
+        deleteAllData();
         synJAONtoSQLite();
 
         //TestAdd();
@@ -80,6 +84,17 @@ public class MainActivity extends AppCompatActivity {
             if(strpass.equals(strMyResult[2])){
                 //password True
                 welcomDialog(struser);
+
+                sharedpreferences = getSharedPreferences("sessionUser", Context.MODE_PRIVATE); // สร้างไฟล์เก็บ session
+                SharedPreferences.Editor editor = sharedpreferences.edit(); // เปิดการใช้งาน ตัวแก้ไข หรือ เพิ่มเติม
+                editor.putString("ID", strMyResult[0]); // อัด ฟิว , ข้อมูล
+                editor.putString("user", strMyResult[1]); // อัด ฟิว , ข้อมูล
+                editor.putString("pass", strMyResult[2]); // อัด ฟิว , ข้อมูล
+                editor.putString("email", strMyResult[3]); // อัด ฟิว , ข้อมูล
+                editor.putString("address", strMyResult[4]); // อัด ฟิว , ข้อมูล
+                editor.commit(); // จบการทำงาน
+
+
             }else {
                 //password False
                 errorDialog("Password ผิด","ลองใหม่ไอเจ้าคนนอก");
@@ -186,11 +201,12 @@ public class MainActivity extends AppCompatActivity {
                     switch (intTimes){
                         case 0:
                             //update UserTABLE
+                            String strID = jsonObject.getString("_ID");
                             String strUser = jsonObject.getString("User");
                             String strPassword = jsonObject.getString("Password");
                             String strEmail = jsonObject.getString("Email");
                             String strAddress = jsonObject.getString("Address");
-                            objUserTable.AddNewUser(strUser,strPassword,strEmail,strAddress);
+                            objUserTable.AddNewUser(strID,strUser,strPassword,strEmail,strAddress);
                             break;
                         case 1:
                             //update casephoneTable
@@ -240,7 +256,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteAllData() {
         SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("Restaurant.db",MODE_APPEND,null);
-        objSqLiteDatabase.delete("userTABLE","_id = 3 ",null);
+        objSqLiteDatabase.delete("userTABLE",null,null);
+        objSqLiteDatabase.delete("Drinktable",null,null);
+        objSqLiteDatabase.delete("casephoneTABLE",null,null);
+        objSqLiteDatabase.delete("menutable",null,null);
     } // delete data
 
 }
